@@ -5,7 +5,7 @@ FROM node:18.17.0-alpine AS build
 WORKDIR /app
 
 # Copy package.json and package-lock.json to the working directory
-COPY package.json package-lock.json ./
+COPY package*.json tsconfig.json ./
 
 # Install dependencies
 RUN npm ci
@@ -16,8 +16,8 @@ COPY . .
 # Build the React app
 RUN npm run build
 
-# Use a smaller base image for the runtime
-FROM nginx:alpine
+# uns NGINX as a non root
+FROM nginxinc/nginx-unprivileged
 
 # Copy the built React app from the previous stage
 COPY --from=build /app/build /usr/share/nginx/html
