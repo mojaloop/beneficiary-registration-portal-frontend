@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Header from './Header';
-//require('dotenv').config();
+import { BRP_BACKEND_URL, BMS_URL } from './constants';
 
 const paymentTypes = [
   { type: 'MSISDN', name: 'Mobile Number' },
@@ -23,13 +23,14 @@ const TokenRegistrationPage: React.FC = () => {
 
   const postDataAndReturnToken = async (requestData: any) => {
     try {
-      const apiUrl = process.env.API_URL
-
-      if (!apiUrl) {
-        console.error('One or more required environment variables are not defined');        
-      }
+      console.log('postDataAndReturnToken requestData:', requestData);
+      // const apiUrl = process.env.API_URL
+      //
+      // if (!apiUrl) {
+      //   console.error('One or more required environment variables are not defined');
+      // }
      
-      const response = await fetch(`http://localhost:8080/getUserInfo`, {
+      const response = await fetch(`${BRP_BACKEND_URL}/getUserInfo`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -89,7 +90,7 @@ const TokenRegistrationPage: React.FC = () => {
     const name = tokenData.name;
     const generatedToken = tokenData.tokenData.token; // Replace 'token' with the actual generated token
 
-    const redirectUrl = `http://localhost:3006/registered-beneficiaries?name=${name}&token=${generatedToken}`;
+    const redirectUrl = `${BMS_URL}/registered-beneficiaries?name=${name}&token=${generatedToken}`;
 
     try {
       window.location.href = redirectUrl;
