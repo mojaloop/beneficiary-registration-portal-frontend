@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Header from './Header';
+import { BRP_UI_URL } from './constants';
 
 /**
  * AuthPage component - handles the redirect to the KYC Authorization page
@@ -14,6 +15,7 @@ const AuthPage: React.FC = () => {
      * Redirect the user to the KYC Authorization page on page load
      */
     const clientId = 'XaOVhjFTX_H8UiZf-O1TuV4ChixshdO8RqghtA_cRUM'; // The clientId of the Mojaloop client
+    // todo: should be configurable!
 
     const urlParams = new URLSearchParams(window.location.search); // Get the URL parameters
     const payeeIdParam = urlParams.get('payeeId'); // Get the payeeId parameter
@@ -22,9 +24,10 @@ const AuthPage: React.FC = () => {
       setpayeeId(payeeIdParam); // Set the component's state with the payeeId parameter
     }
 
-    const redirectUrl = encodeURIComponent('http://localhost:3007'); // The redirect URL for the Authorization request
+    const redirectUrl = encodeURIComponent(BRP_UI_URL); // The redirect URL for the Authorization request
    // const url = `https://esignet.collab.mosip.net/authorize?client_id=${clientId}&redirect_uri=${redirectUrl}&scope=openid%20profile&response_type=code`; // The Authorization request URL
     const esigneturl = `https://esignet.collab.mosip.net/authorize?nonce=ere973eieljznge2311&state=eree2311&client_id=${clientId}&redirect_uri=${redirectUrl}&scope=openid%20profile&response_type=code&acr_values=mosip:idp:acr:generated-code%20mosip:idp:acr:biometrics%20mosip:idp:acr:static-code&claims_locales=en&display=page&state=consent&max_age=21&ui_locales=en`; // The Authorization request URL with additional parameters
+    // todo: should be configurable!
 
     // Redirect the browser to the specified URL
     window.location.href = esigneturl;
