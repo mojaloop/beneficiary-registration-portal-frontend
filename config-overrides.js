@@ -1,6 +1,4 @@
 // webpack.config.js
-const path = require('path');
-
 module.exports = function override(config, env) {
   config.resolve.fallback = {
     ...config.resolve.fallback,
