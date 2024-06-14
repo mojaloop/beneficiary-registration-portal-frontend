@@ -120,10 +120,10 @@ const TokenRegistrationPage: React.FC = () => {
               <label htmlFor="payeeId">Payment Number:</label>
               <input className='w3-input w3-border w3-round w3-animate-input' style={{width:'30%'}} type="text" id="payeeId" value={payeeId} onChange={(e) => setPayeeId(e.target.value)} />
             </div>
-            <button className='w3-btn w3-blue w3-padding-16' type="submit" disabled={!selectedPaymentType || !payeeId || loading}>
+            <button className='w3-btn w3-blue w3-padding-16' id="submitButton"  type="submit" disabled={!selectedPaymentType || !payeeId || loading}>
               {loading ? 'Loading...' : 'Register Token'}
             </button>
-            {error && <div className="w3-panel w3-red"><h3>Error!</h3><p>{error}</p></div>}
+            {error && <div id="errorDiv" className="w3-panel w3-red"><h3>Error!</h3><p>{error}</p></div>}
           </form>
         </div>
         {tokenData && (
