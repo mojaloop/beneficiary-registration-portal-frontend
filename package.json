@@ -14,7 +14,7 @@
     "clean": "npm run clean:npm; npm run clean:build",
     "clean:build": "rm -rf build",
     "clean:npm": "rm -rf node_modules",
-    "test": "echo \"Error: no test specified\"",
+    "test": "npm run test:func:headless",
     "lint": "npx eslint src",
     "lint:fix": "npx eslint src --fix",
     "dep:check": "npx ncu -e 2",
