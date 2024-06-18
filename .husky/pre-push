@@ -1,5 +1,5 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npm run dep:check || echo "Some dependencies are out of date"
+npm run dep:check
 npm run test:func:headless
