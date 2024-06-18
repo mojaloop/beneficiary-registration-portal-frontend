@@ -58,21 +58,20 @@
     "@testing-library/react": "^16.0.0",
     "@types/jest": "^29.5.12",
     "@types/jsonwebtoken": "^9.0.6",
-    "@types/node": "^20.14.2",
+    "@types/node": "^20.14.5",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "audit-ci": "^7.0.1",
-    "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.2",
     "eslint-plugin-react-hooks": "^4.6.2",
-    "globals": "^15.4.0",
+    "globals": "^15.6.0",
     "husky": "^9.0.11",
-    "lint-staged": "^15.2.6",
+    "lint-staged": "^15.2.7",
     "npm-check-updates": "^16.14.20",
     "prettier": "^3.3.2",
     "react-app-rewired": "^2.2.1",
     "testcafe": "^3.6.1",
-    "typescript-eslint": "^7.13.0"
+    "typescript-eslint": "^7.13.1"
   },
   "lint-staged": {
     "./src/*.ts": [
