@@ -238,7 +238,7 @@ jobs:
           command: npm run lint
 
   test-unit:
-    executor: default-machine
+    executor: default-docker
     environment:
       <<: *defaults_environment
     steps:
@@ -255,7 +255,7 @@ jobs:
           key: dependency-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run:
           name: Execute unit tests
-          command: npm test
+          command: echo "No unit Tests"
 
   test-coverage:
     executor: default-docker
@@ -345,8 +345,8 @@ jobs:
           name: Load the pre-built docker image from workspace
           command: docker load -i /tmp/docker-image.tar
       - run:
-          name: No Functional Tests
-          command: echo "Need to add functional tests"
+          name: Executing Functional Tests
+          command: npm test
 
   vulnerability-check:
     executor: default-docker
