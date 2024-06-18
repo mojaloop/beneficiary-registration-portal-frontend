@@ -238,7 +238,7 @@ jobs:
           command: npm run lint
 
   test-unit:
-    executor: default-docker
+    executor: default-machine
     environment:
       <<: *defaults_environment
     steps:
