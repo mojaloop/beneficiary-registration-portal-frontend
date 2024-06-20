@@ -7,6 +7,7 @@ services:
       - "3007:3007"
     networks:
       - my_network
+    env_file: .env
 
 networks:
   my_network:
