@@ -22,6 +22,7 @@ const AuthPage: React.FC = () => {
 
     if (payeeIdParam) {
       setpayeeId(payeeIdParam); // Set the component's state with the payeeId parameter
+      console.log(payeeId);
     }
 
     const redirectUrl = encodeURIComponent(BRP_UI_URL); // The redirect URL for the Authorization request

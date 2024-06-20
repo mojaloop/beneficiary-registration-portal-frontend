@@ -18,26 +18,3 @@ module.exports = function override(config, env) {
 
   return config;
 };
-/* module.exports = {
-    // other webpack configuration options...
-    resolve: {
-      fallback: {
-        "buffer": require.resolve("buffer/"),
-        "crypto": require.resolve("crypto-browserify")
-      }
-    }
-
-  };  */
-  
-  /* const { addPolyfillPlugin } = require('customize-cra');
-
-  module.exports = function override(config, env) {
-    config.resolve.fallback = {
-      ...config.resolve.fallback,
-      crypto: require.resolve('crypto-browserify'),
-    };
-  
-    config = addPolyfillPlugin(config, ['crypto']);
-  
-    return config;
-  }; */

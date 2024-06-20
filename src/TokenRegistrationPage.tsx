@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from './Header';
 import { BRP_BACKEND_URL, BMS_URL } from './constants';
+import {TtokenData} from "./types/types";
 
 const paymentTypes = [
   { type: 'MSISDN', name: 'Mobile Number' },
@@ -19,9 +20,9 @@ const TokenRegistrationPage: React.FC = () => {
   const [payeeId, setPayeeId] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [tokenData, setTokenData] = useState<any | null>(null);
+  const [tokenData, setTokenData] = useState<TtokenData | null>(null);
 
-  const postDataAndReturnToken = async (requestData: any) => {
+  const postDataAndReturnToken = async (requestData: unknown) => {
     try {
       console.log('postDataAndReturnToken requestData:', requestData);
       // const apiUrl = process.env.API_URL
@@ -77,8 +78,10 @@ const TokenRegistrationPage: React.FC = () => {
         } else {
           setTokenData(result);
         }
-      } catch (error: any) {
-        setError(error.message || 'An error occurred');
+      } catch (error: unknown) {
+        if (error instanceof  Error){
+          setError(error.message || 'An error occurred');
+        }
       } finally {
         setLoading(false);
       }
@@ -87,6 +90,9 @@ const TokenRegistrationPage: React.FC = () => {
 
   const handleRedirect = async () => {
     // Assuming tokenData contains the required information for redirection
+    if(!tokenData){
+      return;
+    }
     const name = tokenData.name;
     const generatedToken = tokenData.tokenData.token; // Replace 'token' with the actual generated token
 
