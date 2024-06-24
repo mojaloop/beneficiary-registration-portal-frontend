@@ -25,12 +25,6 @@ const TokenRegistrationPage: React.FC = () => {
   const postDataAndReturnToken = async (requestData: unknown) => {
     try {
       console.log('postDataAndReturnToken requestData:', requestData);
-      // const apiUrl = process.env.API_URL
-      //
-      // if (!apiUrl) {
-      //   console.error('One or more required environment variables are not defined');
-      // }
-     
       const response = await fetch(`${BRP_BACKEND_URL}/getUserInfo`, {
     method: 'POST',
     headers: {
@@ -133,7 +127,7 @@ const TokenRegistrationPage: React.FC = () => {
           </form>
         </div>
         {tokenData && (
-          <div className="w3-container w3-card-4">
+          <div id="tokenDataDiv" className="w3-container w3-card-4">
             <div className="w3-panel w3-green">
               <h3>Success!</h3>
              

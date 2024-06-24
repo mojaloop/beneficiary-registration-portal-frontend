@@ -28,7 +28,7 @@ const AuthPage: React.FC = () => {
    // const url = `https://esignet.collab.mosip.net/authorize?client_id=${clientId}&redirect_uri=${redirectUrl}&scope=openid%20profile&response_type=code`; // The Authorization request URL
     const base_url = process.env.REACT_APP_ESIGNET_BASE_URL;
     const esigneturl = `https://${base_url}/authorize?nonce=ere973eieljznge2311&state=eree2311&client_id=${clientId}&redirect_uri=${redirectUrl}&scope=openid%20profile&response_type=code&acr_values=mosip:idp:acr:generated-code%20mosip:idp:acr:biometrics%20mosip:idp:acr:static-code&claims_locales=en&display=page&state=consent&max_age=21&ui_locales=en`; // The Authorization request URL with additional parameters
-
+    console.log(esigneturl);
     // Redirect the browser to the specified URL
     window.location.href = esigneturl;
   }, []);
