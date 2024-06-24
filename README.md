@@ -44,7 +44,7 @@ npm run build
 Start the app:
 
 ```bash
-npm run start
+PORT=3007 npm run start # Set port and run
 ```
 #### Running the project using docker-compose
 
