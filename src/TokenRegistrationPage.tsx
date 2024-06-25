@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from './Header';
-//require('dotenv').config();
+import { BRP_BACKEND_URL, BMS_URL } from './constants';
+import {TtokenData} from "./types/types";
 
 const paymentTypes = [
   { type: 'MSISDN', name: 'Mobile Number' },
@@ -19,17 +20,12 @@ const TokenRegistrationPage: React.FC = () => {
   const [payeeId, setPayeeId] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [tokenData, setTokenData] = useState<any | null>(null);
+  const [tokenData, setTokenData] = useState<TtokenData | null>(null);
 
-  const postDataAndReturnToken = async (requestData: any) => {
+  const postDataAndReturnToken = async (requestData: unknown) => {
     try {
-      const apiUrl = process.env.API_URL
-
-      if (!apiUrl) {
-        console.error('One or more required environment variables are not defined');        
-      }
-     
-      const response = await fetch(`http://localhost:8080/getUserInfo`, {
+      console.log('postDataAndReturnToken requestData:', requestData);
+      const response = await fetch(`${BRP_BACKEND_URL}/getUserInfo`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -76,8 +72,10 @@ const TokenRegistrationPage: React.FC = () => {
         } else {
           setTokenData(result);
         }
-      } catch (error: any) {
-        setError(error.message || 'An error occurred');
+      } catch (error: unknown) {
+        if (error instanceof  Error){
+          setError(error.message || 'An error occurred');
+        }
       } finally {
         setLoading(false);
       }
@@ -86,10 +84,13 @@ const TokenRegistrationPage: React.FC = () => {
 
   const handleRedirect = async () => {
     // Assuming tokenData contains the required information for redirection
+    if(!tokenData){
+      return;
+    }
     const name = tokenData.name;
     const generatedToken = tokenData.tokenData.token; // Replace 'token' with the actual generated token
 
-    const redirectUrl = `http://localhost:3006/registered-beneficiaries?name=${name}&token=${generatedToken}`;
+    const redirectUrl = `${BMS_URL}/registered-beneficiaries?name=${name}&token=${generatedToken}`;
 
     try {
       window.location.href = redirectUrl;
@@ -119,14 +120,14 @@ const TokenRegistrationPage: React.FC = () => {
               <label htmlFor="payeeId">Payment Number:</label>
               <input className='w3-input w3-border w3-round w3-animate-input' style={{width:'30%'}} type="text" id="payeeId" value={payeeId} onChange={(e) => setPayeeId(e.target.value)} />
             </div>
-            <button className='w3-btn w3-blue w3-padding-16' type="submit" disabled={!selectedPaymentType || !payeeId || loading}>
+            <button className='w3-btn w3-blue w3-padding-16' id="submitButton"  type="submit" disabled={!selectedPaymentType || !payeeId || loading}>
               {loading ? 'Loading...' : 'Register Token'}
             </button>
-            {error && <div className="w3-panel w3-red"><h3>Error!</h3><p>{error}</p></div>}
+            {error && <div id="errorDiv" className="w3-panel w3-red"><h3>Error!</h3><p>{error}</p></div>}
           </form>
         </div>
         {tokenData && (
-          <div className="w3-container w3-card-4">
+          <div id="tokenDataDiv" className="w3-container w3-card-4">
             <div className="w3-panel w3-green">
               <h3>Success!</h3>
              

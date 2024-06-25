@@ -1,4 +1,3 @@
-````markdown
 # Beneficiary Registration Portal-Frontend
 
 Welcome to the Beneficiary Registration Portal! This application is designed to facilitate the registration process for beneficiaries.
@@ -17,7 +16,6 @@ Clone the repository to your local machine using Git:
 ```bash
 git clone https://github.com/mojaloop/beneficiary-registration-portal-frontend.git
 ```
-````
 
 ### Frontend (React)
 
@@ -46,7 +44,7 @@ npm run build
 Start the app:
 
 ```bash
-npm run start
+PORT=3007 npm run start # Set port and run
 ```
 #### Running the project using docker-compose
 
