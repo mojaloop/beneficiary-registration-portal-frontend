@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # uns NGINX as a non root
-FROM nginxinc/nginx-unprivileged
+FROM nginxinc/nginx-unprivileged:1.29.3-trixie
 
 # Copy the built React app from the previous stage
 COPY --from=build /app/build /usr/share/nginx/html
